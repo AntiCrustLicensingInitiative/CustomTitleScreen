@@ -1,0 +1,30 @@
+{
+  "schemaVersion": 1,
+  "id": "customtitlescreen",
+  "version": "${version}",
+  "name": "CustomTitleScreen",
+  "description": "Allows you to customize the main menu",
+  "authors": [
+    "Martmists"
+  ],
+  "contact": {
+    "sources": "https://dilaton.martmists.com/martmists/custommainmenu"
+  },
+  "license": "MIT",
+  "icon": "assets/cts/icon.png",
+  "environment": "client",
+  "entrypoints": {
+    "client": [
+      {
+        "value": "com.martmists.customtitlescreen.CustomTitleScreenMod"
+      }
+    ]
+  },
+  "mixins": [
+    "cts.mixin.json"
+  ],
+  "depends": {
+    "fabricloader": ">=0.4.0",
+    "cotton-config": "*"
+  }
+}

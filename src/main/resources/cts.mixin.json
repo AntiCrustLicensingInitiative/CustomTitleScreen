@@ -1,0 +1,14 @@
+{
+  "required": true,
+  "package": "com.martmists.customtitlescreen.mixin",
+  "compatibilityLevel": "JAVA_8",
+  "mixins": [
+    "TitleScreenMixin",
+    "AbstractButtonWidgetMixin"
+  ],
+  "server": [
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}
