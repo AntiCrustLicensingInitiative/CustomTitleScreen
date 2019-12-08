@@ -29,14 +29,11 @@ class TitleScreenMixin extends Screen {
         super(text);
     }
 
-    @ModifyArg(
-            method="render(IIF)V",
-            at=@At(
-                    value="INVOKE",
-                    target="Lnet/minecraft/client/gui/screen/TitleScreen;drawString(Lnet/minecraft/client/font/TextRenderer;Ljava/lang/String;III)V",
-                    ordinal = 0
-            ),
-            index=1)
+    @ModifyArg(method="render(IIF)V",
+               at=@At(value="INVOKE",
+                      target="Lnet/minecraft/client/gui/screen/TitleScreen;drawString(Lnet/minecraft/client/font/TextRenderer;Ljava/lang/String;III)V",
+                      ordinal = 0),
+               index=1)
     public String modifyEdition(TextRenderer textRenderer, String version, int x, int y, int color){
         if (CustomTitleScreenMod.config.customEditionEnabled) {
             this.drawString(textRenderer, CustomTitleScreenMod.config.customEdition, x, y-10, color);
@@ -44,14 +41,12 @@ class TitleScreenMixin extends Screen {
         return version;
     }
 
-    @ModifyArg(
-            method="render(IIF)V",
-            at=@At(
-                    value="INVOKE",
-                    target="Lnet/minecraft/client/gui/screen/TitleScreen;drawCenteredString(Lnet/minecraft/client/font/TextRenderer;Ljava/lang/String;III)V",
-                    ordinal = 0
-            ),
-            index=1)
+    @ModifyArg(method="render(IIF)V",
+               at=@At(value="INVOKE",
+                      target="Lnet/minecraft/client/gui/screen/TitleScreen;drawCenteredString(Lnet/minecraft/client/font/TextRenderer;Ljava/lang/String;III)V",
+                      ordinal = 0
+               ),
+               index=1)
     public String modifySplash(String splash){
         if (CustomTitleScreenMod.config.removeSplash)
             return "";

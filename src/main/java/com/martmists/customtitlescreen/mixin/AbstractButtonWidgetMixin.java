@@ -4,6 +4,7 @@ import com.martmists.customtitlescreen.CustomTitleScreenMod;
 import com.martmists.customtitlescreen.config.SingleButtonConfig;
 import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.client.MinecraftClient;
+import net.minecraft.client.gui.screen.TitleScreen;
 import net.minecraft.client.gui.widget.AbstractButtonWidget;
 import net.minecraft.client.texture.NativeImage;
 import net.minecraft.client.texture.NativeImageBackedTexture;
@@ -57,6 +58,9 @@ public class AbstractButtonWidgetMixin {
     @Inject(method="<init>(IIIILjava/lang/String;)V",
             at=@At(value="RETURN"))
     public void getX(int x, int y, int width, int height, String message, CallbackInfo ci){
+        if (!(MinecraftClient.getInstance().currentScreen instanceof TitleScreen))
+            return;
+
         int i = CustomTitleScreenMod.screenWidth / 2 - 100;
         int j = CustomTitleScreenMod.screenHeight / 4 + 48;
         int xScale = 12;
