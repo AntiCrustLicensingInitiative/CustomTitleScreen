@@ -43,7 +43,7 @@ public class AbstractButtonWidgetMixin {
             ),
             index=0)
     public Identifier modifyButtons(Identifier id) throws IOException {
-        File f = FabricLoader.getInstance().getConfigDirectory().toPath().resolve("cmm/buttons.png").toFile();
+        File f = FabricLoader.getInstance().getConfigDirectory().toPath().resolve("cts/buttons.png").toFile();
         if (f.exists()) {
             TextureManager t = MinecraftClient.getInstance().getTextureManager();
             if (!(t.getTexture(id) instanceof NativeImageBackedTexture)) {
