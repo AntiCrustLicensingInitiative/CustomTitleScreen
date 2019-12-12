@@ -62,6 +62,7 @@ class TitleScreenMixin extends Screen {
 
     @Inject(method="init()V", at=@At("HEAD"))
     public void postInit(CallbackInfo ci){
+        this.minecraft.options.realmsNotifications = false;
         CustomTitleScreenMod.screenWidth = width;
         CustomTitleScreenMod.screenHeight = height;
     }
