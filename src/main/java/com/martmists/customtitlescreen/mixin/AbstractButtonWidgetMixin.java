@@ -46,7 +46,7 @@ public class AbstractButtonWidgetMixin extends DrawableHelper {
             return renderer;
         if (!CustomTitleScreenMod.allButtons.contains(this))
             return renderer;
-        File f = new File("config/cts/custom_font.tff");
+        File f = new File(FabricLoader.getInstance().getConfigDirectory().toString() + "/cts/custom_font.ttf");
         if (!f.exists())
             return renderer;
         Identifier id = new Identifier("cts:font");
