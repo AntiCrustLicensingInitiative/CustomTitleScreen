@@ -1,28 +1,34 @@
 package com.martmists.customtitlescreen.mixin;
 
+import com.google.common.collect.Lists;
 import com.martmists.customtitlescreen.CustomTitleScreenMod;
 import com.martmists.customtitlescreen.config.SingleButtonConfig;
 import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.client.MinecraftClient;
+import net.minecraft.client.font.*;
+import net.minecraft.client.gui.DrawableHelper;
 import net.minecraft.client.gui.screen.TitleScreen;
 import net.minecraft.client.gui.widget.AbstractButtonWidget;
 import net.minecraft.client.texture.NativeImage;
 import net.minecraft.client.texture.NativeImageBackedTexture;
 import net.minecraft.client.texture.TextureManager;
+import net.minecraft.client.texture.TextureUtil;
 import net.minecraft.util.Identifier;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.ModifyArg;
+import org.spongepowered.asm.mixin.injection.ModifyVariable;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.nio.ByteBuffer;
 
 @Mixin(AbstractButtonWidget.class)
-public class AbstractButtonWidgetMixin {
+public class AbstractButtonWidgetMixin extends DrawableHelper {
     @Shadow
     int x;
     @Shadow
@@ -33,6 +39,30 @@ public class AbstractButtonWidgetMixin {
     int height;
     @Shadow
     String message;
+
+    @ModifyVariable(method = "renderButton(IIF)V", at = @At(value = "STORE", ordinal = 1))
+    public TextRenderer getTextRenderer(TextRenderer renderer) {
+        if (!(MinecraftClient.getInstance().currentScreen instanceof TitleScreen))
+            return renderer;
+        if (!CustomTitleScreenMod.allButtons.contains(this))
+            return renderer;
+        File f = new File("config/cts/custom_font.tff");
+        if (!f.exists())
+            return renderer;
+        Identifier id = new Identifier("cts:font");
+        TextRenderer render = MinecraftClient.getInstance().getFontManager().getTextRenderer(id);
+        assert render != null;
+        ByteBuffer byteBuffer;
+        try {
+            byteBuffer = TextureUtil.readResource(new FileInputStream(f));
+            render.setFonts(Lists.newArrayList(new Font[]{
+                    new TrueTypeFont(TrueTypeFont.getSTBTTFontInfo(byteBuffer), 11.0f, 1.0f, 0f, 0f, "")
+            }));
+            return render;
+        } catch (IOException e) {
+            return renderer;
+        }
+    }
 
     @ModifyArg(
             method="renderButton(IIF)V",
@@ -60,7 +90,9 @@ public class AbstractButtonWidgetMixin {
     public void getX(int x, int y, int width, int height, String message, CallbackInfo ci){
         if (!(MinecraftClient.getInstance().currentScreen instanceof TitleScreen))
             return;
-
+        if (!CustomTitleScreenMod.allButtons.contains(this)){
+            CustomTitleScreenMod.allButtons.add(this);
+        }
         int i = CustomTitleScreenMod.screenWidth / 2 - 100;
         int j = CustomTitleScreenMod.screenHeight / 4 + 48;
         int xScale = 12;
