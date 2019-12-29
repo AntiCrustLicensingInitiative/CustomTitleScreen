@@ -40,7 +40,7 @@ public class AbstractButtonWidgetMixin extends DrawableHelper {
     @Shadow
     String message;
 
-    @ModifyVariable(method = "renderButton(IIF)V", at = @At(value = "STORE", ordinal = 1))
+    @ModifyVariable(method = "renderButton(IIF)V", at = @At(value = "STORE", ordinal = 0))
     public TextRenderer getTextRenderer(TextRenderer renderer) {
         if (!(MinecraftClient.getInstance().currentScreen instanceof TitleScreen))
             return renderer;
@@ -100,7 +100,7 @@ public class AbstractButtonWidgetMixin extends DrawableHelper {
 
         if (CustomTitleScreenMod.buttonCache.containsKey(this)){
             this.x = CustomTitleScreenMod.screenWidth / 2 + this.x;
-            this.y = CustomTitleScreenMod.screenHeight / 4 + 48 + this.y;
+            this.y = this.y - (360 - CustomTitleScreenMod.screenHeight);
             SingleButtonConfig config = CustomTitleScreenMod.buttonConfig.buttons.get(CustomTitleScreenMod.buttonCache.get(this));
             if (!config.text.equals("<default>"))
                 this.message = config.text;
@@ -110,7 +110,7 @@ public class AbstractButtonWidgetMixin extends DrawableHelper {
                 SingleButtonConfig config = CustomTitleScreenMod.buttonConfig.buttons.get("minecraft.singleplayer");
                 if (config == null) return;
                 this.x = CustomTitleScreenMod.screenWidth / 2 + config.x;
-                this.y = j + config.y;
+                this.y = config.y - (360 - CustomTitleScreenMod.screenHeight);
                 this.width = config.width;
                 this.height = config.height;
                 if (!config.text.equals("<default>"))
@@ -120,7 +120,7 @@ public class AbstractButtonWidgetMixin extends DrawableHelper {
                 SingleButtonConfig config = CustomTitleScreenMod.buttonConfig.buttons.get("minecraft.multiplayer");
                 if (config == null) return;
                 this.x = CustomTitleScreenMod.screenWidth / 2 + config.x;
-                this.y = j + config.y;
+                this.y = config.y - (360 - CustomTitleScreenMod.screenHeight);
                 this.width = config.width;
                 this.height = config.height;
                 if (!config.text.equals("<default>"))
@@ -130,7 +130,7 @@ public class AbstractButtonWidgetMixin extends DrawableHelper {
                 SingleButtonConfig config = CustomTitleScreenMod.buttonConfig.buttons.get("minecraft.realms");
                 if (config == null) return;
                 this.x = CustomTitleScreenMod.screenWidth / 2 + config.x;
-                this.y = j + config.y;
+                this.y = config.y - (360 - CustomTitleScreenMod.screenHeight);
                 this.width = config.width;
                 this.height = config.height;
                 if (!config.text.equals("<default>"))
@@ -140,7 +140,7 @@ public class AbstractButtonWidgetMixin extends DrawableHelper {
                 SingleButtonConfig config = CustomTitleScreenMod.buttonConfig.buttons.get("modmenu.modlist");
                 if (config == null) return;
                 this.x = CustomTitleScreenMod.screenWidth / 2 + config.x;
-                this.y = j + config.y;
+                this.y = config.y - (360 - CustomTitleScreenMod.screenHeight);
                 this.width = config.width;
                 this.height = config.height;
                 if (!config.text.equals("<default>"))
@@ -150,7 +150,7 @@ public class AbstractButtonWidgetMixin extends DrawableHelper {
                 SingleButtonConfig config = CustomTitleScreenMod.buttonConfig.buttons.get("minecraft.options");
                 if (config == null) return;
                 this.x = CustomTitleScreenMod.screenWidth / 2 + config.x;
-                this.y = j + config.y;
+                this.y = config.y - (360 - CustomTitleScreenMod.screenHeight);
                 this.width = config.width;
                 this.height = config.height;
                 if (!config.text.equals("<default>"))
@@ -162,7 +162,7 @@ public class AbstractButtonWidgetMixin extends DrawableHelper {
                 SingleButtonConfig config = CustomTitleScreenMod.buttonConfig.buttons.get("minecraft.language");
                 if (config == null) return;
                 this.x = CustomTitleScreenMod.screenWidth / 2 + config.x;
-                this.y = j + config.y;
+                this.y = config.y - (360 - CustomTitleScreenMod.screenHeight);
                 this.width = config.width;
                 this.height = config.height;
                 if (!config.text.equals("<default>"))
@@ -172,7 +172,7 @@ public class AbstractButtonWidgetMixin extends DrawableHelper {
                 SingleButtonConfig config = CustomTitleScreenMod.buttonConfig.buttons.get("minecraft.quit");
                 if (config == null) return;
                 this.x = CustomTitleScreenMod.screenWidth / 2 + config.x;
-                this.y = j + config.y;
+                this.y = config.y - (360 - CustomTitleScreenMod.screenHeight);
                 this.width = config.width;
                 this.height = config.height;
                 if (!config.text.equals("<default>"))
@@ -182,7 +182,7 @@ public class AbstractButtonWidgetMixin extends DrawableHelper {
                 SingleButtonConfig config = CustomTitleScreenMod.buttonConfig.buttons.get("minecraft.accessibility");
                 if (config == null) return;
                 this.x = CustomTitleScreenMod.screenWidth / 2 + config.x;
-                this.y = j + config.y;
+                this.y = config.y - (360 - CustomTitleScreenMod.screenHeight);
                 this.width = config.width;
                 this.height = config.height;
                 if (!config.text.equals("<default>"))

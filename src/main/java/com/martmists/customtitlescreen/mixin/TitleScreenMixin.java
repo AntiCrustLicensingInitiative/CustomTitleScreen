@@ -8,6 +8,7 @@ import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.client.font.TextRenderer;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.gui.screen.TitleScreen;
+import net.minecraft.client.gui.widget.AbstractButtonWidget;
 import net.minecraft.client.gui.widget.TexturedButtonWidget;
 import net.minecraft.client.texture.NativeImage;
 import net.minecraft.client.texture.NativeImageBackedTexture;
@@ -24,7 +25,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import java.io.*;
 import java.util.Random;
 
-@Mixin(TitleScreen.class)
+@Mixin(value = TitleScreen.class, priority = 1001)
 class TitleScreenMixin extends Screen {
     protected TitleScreenMixin(Text text) {
         super(text);
@@ -69,9 +70,9 @@ class TitleScreenMixin extends Screen {
     }
     @Override
     public void setSize(int a, int b){
-        super.setSize(a, b);
         CustomTitleScreenMod.screenWidth = width;
         CustomTitleScreenMod.screenHeight = height;
+        super.setSize(a, b);
     }
 
     @Inject(method="init()V", at=@At("RETURN"))
@@ -101,7 +102,7 @@ class TitleScreenMixin extends Screen {
                         index += 1;
                     }
                     TexturedButtonWidget old = (TexturedButtonWidget) this.buttons.get(index);
-                    LanguagesButton button = new LanguagesButton(old, CustomTitleScreenMod.screenWidth / 2 + value.x, CustomTitleScreenMod.screenHeight / 4 + 48 + value.y, value.width, value.height, value.text);
+                    LanguagesButton button = new LanguagesButton(old, CustomTitleScreenMod.screenWidth / 2 + value.x, value.y - (360 - CustomTitleScreenMod.screenHeight), value.width, value.height, value.text);
                     this.buttons.remove(index);
                     this.children.remove(index);
                     this.addButton(button);
@@ -109,7 +110,7 @@ class TitleScreenMixin extends Screen {
                     break;
                 }
                 case "url": {
-                    UrlButton button = new UrlButton(CustomTitleScreenMod.screenWidth / 2 + value.x, CustomTitleScreenMod.screenHeight / 4 + 48 + value.y, value.width, value.height, value.text, value.parameter);
+                    UrlButton button = new UrlButton(CustomTitleScreenMod.screenWidth / 2 + value.x, value.y - (360 - CustomTitleScreenMod.screenHeight), value.width, value.height, value.text, value.parameter);
                     this.addButton(button);
                     CustomTitleScreenMod.buttonCache.put(button, key);
                     break;
@@ -175,5 +176,9 @@ class TitleScreenMixin extends Screen {
         } else {
             return id;
         }
+    }
+
+    protected <T extends AbstractButtonWidget> T addButton(T button) {
+        return super.addButton(button);
     }
 }
