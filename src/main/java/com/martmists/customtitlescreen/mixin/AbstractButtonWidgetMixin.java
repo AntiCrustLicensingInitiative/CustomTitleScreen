@@ -14,6 +14,7 @@ import net.minecraft.client.texture.NativeImageBackedTexture;
 import net.minecraft.client.texture.TextureManager;
 import net.minecraft.client.texture.TextureUtil;
 import net.minecraft.util.Identifier;
+import org.lwjgl.stb.STBTTFontinfo;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
@@ -56,7 +57,7 @@ public class AbstractButtonWidgetMixin extends DrawableHelper {
         try {
             byteBuffer = TextureUtil.readResource(new FileInputStream(f));
             render.setFonts(Lists.newArrayList(new Font[]{
-                    new TrueTypeFont(TrueTypeFont.getSTBTTFontInfo(byteBuffer), 11.0f, 1.0f, 0f, 0f, "")
+                    new TrueTypeFont(byteBuffer, STBTTFontinfo.malloc(), 11.0f, 1.0f, 0f, 0f, "")
             }));
             return render;
         } catch (IOException e) {

@@ -2,6 +2,7 @@ package com.martmists.customtitlescreen.mixin;
 
 import com.martmists.customtitlescreen.CustomTitleScreenMod;
 import com.martmists.customtitlescreen.buttons.LanguagesButton;
+import com.martmists.customtitlescreen.buttons.RefreshButton;
 import com.martmists.customtitlescreen.config.SingleButtonConfig;
 import com.martmists.customtitlescreen.buttons.UrlButton;
 import net.fabricmc.loader.api.FabricLoader;
@@ -19,7 +20,6 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.ModifyArg;
-import org.spongepowered.asm.mixin.injection.ModifyVariable;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 import java.io.*;
@@ -111,6 +111,12 @@ class TitleScreenMixin extends Screen {
                 }
                 case "url": {
                     UrlButton button = new UrlButton(CustomTitleScreenMod.screenWidth / 2 + value.x, value.y - (360 - CustomTitleScreenMod.screenHeight), value.width, value.height, value.text, value.parameter);
+                    this.addButton(button);
+                    CustomTitleScreenMod.buttonCache.put(button, key);
+                    break;
+                }
+                case "refresh": {
+                    RefreshButton button = new RefreshButton(CustomTitleScreenMod.screenWidth / 2 + value.x, value.y - (360 - CustomTitleScreenMod.screenHeight), value.width, value.height, value.text);
                     this.addButton(button);
                     CustomTitleScreenMod.buttonCache.put(button, key);
                     break;

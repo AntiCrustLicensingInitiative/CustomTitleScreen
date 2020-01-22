@@ -20,8 +20,14 @@ public class CustomTitleScreenMod implements ClientModInitializer {
 
     @Override
     public void onInitializeClient() {
-        config = ConfigManager.loadConfig(CTSConfig.class);
-        buttonConfig = ConfigManager.loadConfig(ButtonConfig.class);
+        loadConfig();
         System.out.println("CustomMainMenu initialized!");
+    }
+
+    public static void loadConfig(){
+        CustomTitleScreenMod.allButtons = new ArrayList<>();
+        CustomTitleScreenMod.buttonCache = new IdentityHashMap<>();
+        CustomTitleScreenMod.config = ConfigManager.loadConfig(CTSConfig.class);
+        CustomTitleScreenMod.buttonConfig = ConfigManager.loadConfig(ButtonConfig.class);
     }
 }
