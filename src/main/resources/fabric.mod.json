@@ -2,15 +2,15 @@
   "schemaVersion": 1,
   "id": "customtitlescreen",
   "version": "${version}",
-  "name": "CustomTitleScreen",
-  "description": "Allows you to customize the main menu",
+  "name": "Custom Title Screen",
+  "description": "Allows you to customize the title screen",
   "authors": [
     "Martmists"
   ],
   "contact": {
-    "sources": "https://dilaton.martmists.com/martmists/custommainmenu"
+    "sources": "https://github.com/AntiCrustLicensingInitiative/CustomTitleScreen"
   },
-  "license": "MIT",
+  "license": "LGPL-3.0-or-later",
   "icon": "assets/cts/icon.png",
   "environment": "client",
   "entrypoints": {
@@ -21,10 +21,12 @@
     ]
   },
   "mixins": [
-    "cts.mixin.json"
+    "customtitlescreen.mixins.json"
   ],
   "depends": {
     "fabricloader": ">=0.4.0",
+    "minecraft": ">=1.15",
+    "fabric": "*",
     "cotton-config": "*"
   }
 }

@@ -9,16 +9,16 @@ Martmists changed all of the licenses of his mods from MIT to a very restrictive
 
 ## Features
 
-- Custom background image
-- Add custom button texture
-- Modify button locations
-- Add your own buttons that open URLs
+* Custom background image
+* Add custom button texture
+* Modify button locations
+* Add your own buttons that open URLs
 
 
 ## Configuration
 
-For a custom wallpaper, simply put an image in config/cts/background.png    
-For custom buttons, put an image in config/cts/buttons.png    
+For a custom wallpaper, simply put an image in config/cts/background.png
+For custom buttons, put an image in config/cts/buttons.png
 > Note: The buttons.png needs to be based on widgets.png, which can be extracted from minecraft.
 
 Main config:
