@@ -11,23 +11,22 @@ import java.util.ArrayList;
 import java.util.IdentityHashMap;
 
 public class CustomTitleScreenMod implements ClientModInitializer {
-    public static CTSConfig config;
-    public static ButtonConfig buttonConfig;
-    public static int screenWidth;
-    public static int screenHeight;
-    public static IdentityHashMap<AbstractButtonWidget, String> buttonCache = new IdentityHashMap<>();
-    public static ArrayList<DrawableHelper> allButtons = new ArrayList<>();
+	public static CTSConfig config;
+	public static ButtonConfig buttonConfig;
+	public static int screenWidth;
+	public static int screenHeight;
+	public static IdentityHashMap<AbstractButtonWidget, String> buttonCache = new IdentityHashMap<>();
+	public static ArrayList<DrawableHelper> allButtons = new ArrayList<>();
 
-    @Override
-    public void onInitializeClient() {
-        loadConfig();
-        System.out.println("CustomMainMenu initialized!");
-    }
+	@Override
+	public void onInitializeClient() {
+		loadConfig();
+	}
 
-    public static void loadConfig(){
-        CustomTitleScreenMod.allButtons = new ArrayList<>();
-        CustomTitleScreenMod.buttonCache = new IdentityHashMap<>();
-        CustomTitleScreenMod.config = ConfigManager.loadConfig(CTSConfig.class);
-        CustomTitleScreenMod.buttonConfig = ConfigManager.loadConfig(ButtonConfig.class);
-    }
+	public static void loadConfig() {
+		CustomTitleScreenMod.allButtons = new ArrayList<>();
+		CustomTitleScreenMod.buttonCache = new IdentityHashMap<>();
+		CustomTitleScreenMod.config = ConfigManager.loadConfig(CTSConfig.class);
+		CustomTitleScreenMod.buttonConfig = ConfigManager.loadConfig(ButtonConfig.class);
+	}
 }

@@ -6,5 +6,5 @@ import java.util.HashMap;
 
 @ConfigFile(name = "cts/buttons")
 public class ButtonConfig {
-    public HashMap<String, SingleButtonConfig> buttons = new HashMap<>();
+	public HashMap<String, SingleButtonConfig> buttons = new HashMap<>();
 }
