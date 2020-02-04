@@ -1,6 +1,6 @@
 {
   "required": true,
-  "package": "com.martmists.customtitlescreen.mixin",
+  "package": "org.anticrustlicensinginitiative.aclititlescreen.mixin",
   "compatibilityLevel": "JAVA_8",
   "client": [
     "TitleScreenMixin",

@@ -1,7 +1,7 @@
-package com.martmists.customtitlescreen;
+package org.anticrustlicensinginitiative.aclititlescreen;
 
-import com.martmists.customtitlescreen.config.ButtonConfig;
-import com.martmists.customtitlescreen.config.CTSConfig;
+import org.anticrustlicensinginitiative.aclititlescreen.config.ButtonConfig;
+import org.anticrustlicensinginitiative.aclititlescreen.config.CTSConfig;
 import io.github.cottonmc.cotton.config.ConfigManager;
 import net.fabricmc.api.ClientModInitializer;
 import net.minecraft.client.gui.DrawableHelper;
@@ -10,7 +10,7 @@ import net.minecraft.client.gui.widget.AbstractButtonWidget;
 import java.util.ArrayList;
 import java.util.IdentityHashMap;
 
-public class CustomTitleScreenMod implements ClientModInitializer {
+public class ACLITitleMod implements ClientModInitializer {
 	public static CTSConfig config;
 	public static ButtonConfig buttonConfig;
 	public static int screenWidth;
@@ -24,9 +24,9 @@ public class CustomTitleScreenMod implements ClientModInitializer {
 	}
 
 	public static void loadConfig() {
-		CustomTitleScreenMod.allButtons = new ArrayList<>();
-		CustomTitleScreenMod.buttonCache = new IdentityHashMap<>();
-		CustomTitleScreenMod.config = ConfigManager.loadConfig(CTSConfig.class);
-		CustomTitleScreenMod.buttonConfig = ConfigManager.loadConfig(ButtonConfig.class);
+		ACLITitleMod.allButtons = new ArrayList<>();
+		ACLITitleMod.buttonCache = new IdentityHashMap<>();
+		ACLITitleMod.config = ConfigManager.loadConfig(CTSConfig.class);
+		ACLITitleMod.buttonConfig = ConfigManager.loadConfig(ButtonConfig.class);
 	}
 }

@@ -1,4 +1,4 @@
-# CustomTitleScreen
+# ACLI Title Screen
 
 An open-source fork of https://dilaton.martmists.com/Martmists/CustomTitleScreen
 

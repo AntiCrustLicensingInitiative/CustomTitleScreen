@@ -1,11 +1,12 @@
 {
   "schemaVersion": 1,
-  "id": "customtitlescreen",
+  "id": "aclititlescreen",
   "version": "${version}",
-  "name": "Custom Title Screen",
+  "name": "ACLI Title Screen",
   "description": "Allows you to customize the title screen",
   "authors": [
-    "Martmists"
+    "Martmists",
+    ""
   ],
   "contact": {
     "sources": "https://github.com/AntiCrustLicensingInitiative/CustomTitleScreen"
@@ -16,7 +17,7 @@
   "entrypoints": {
     "client": [
       {
-        "value": "com.martmists.customtitlescreen.CustomTitleScreenMod"
+        "value": "org.anticrustlicensinginitiative.aclititlescreen.ACLITitleMod"
       }
     ]
   },

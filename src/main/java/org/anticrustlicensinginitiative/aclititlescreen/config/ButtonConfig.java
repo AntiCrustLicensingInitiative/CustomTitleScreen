@@ -1,4 +1,4 @@
-package com.martmists.customtitlescreen.config;
+package org.anticrustlicensinginitiative.aclititlescreen.config;
 
 import io.github.cottonmc.cotton.config.annotations.ConfigFile;
 

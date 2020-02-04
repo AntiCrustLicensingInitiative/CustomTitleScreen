@@ -1,4 +1,4 @@
-package com.martmists.customtitlescreen.buttons;
+package org.anticrustlicensinginitiative.aclititlescreen.buttons;
 
 import net.minecraft.client.gui.widget.ButtonWidget;
 import net.minecraft.util.Util;

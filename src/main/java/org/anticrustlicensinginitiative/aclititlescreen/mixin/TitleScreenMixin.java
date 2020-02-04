@@ -1,10 +1,10 @@
-package com.martmists.customtitlescreen.mixin;
+package org.anticrustlicensinginitiative.aclititlescreen.mixin;
 
-import com.martmists.customtitlescreen.CustomTitleScreenMod;
-import com.martmists.customtitlescreen.buttons.LanguagesButton;
-import com.martmists.customtitlescreen.buttons.RefreshButton;
-import com.martmists.customtitlescreen.config.SingleButtonConfig;
-import com.martmists.customtitlescreen.buttons.UrlButton;
+import org.anticrustlicensinginitiative.aclititlescreen.ACLITitleMod;
+import org.anticrustlicensinginitiative.aclititlescreen.buttons.LanguagesButton;
+import org.anticrustlicensinginitiative.aclititlescreen.buttons.RefreshButton;
+import org.anticrustlicensinginitiative.aclititlescreen.config.SingleButtonConfig;
+import org.anticrustlicensinginitiative.aclititlescreen.buttons.UrlButton;
 import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.client.font.TextRenderer;
 import net.minecraft.client.gui.screen.Screen;
@@ -37,8 +37,8 @@ class TitleScreenMixin extends Screen {
 					  ordinal = 0),
 			   index=1)
 	private String modifyEdition(TextRenderer textRenderer, String version, int x, int y, int color) {
-		if (CustomTitleScreenMod.config.customEditionEnabled) {
-			this.drawString(textRenderer, CustomTitleScreenMod.config.customEdition, x, y-10, color);
+		if (ACLITitleMod.config.customEditionEnabled) {
+			this.drawString(textRenderer, ACLITitleMod.config.customEdition, x, y-10, color);
 		}
 		return version;
 	}
@@ -50,10 +50,10 @@ class TitleScreenMixin extends Screen {
 			   ),
 			   index=1)
 	private String modifySplash(String splash) {
-		if (CustomTitleScreenMod.config.removeSplash)
+		if (ACLITitleMod.config.removeSplash)
 			return "";
-		String[] splashes = CustomTitleScreenMod.config.customSplash;
-		if (CustomTitleScreenMod.config.customSplashEnabled && splashes.length > 0) {
+		String[] splashes = ACLITitleMod.config.customSplash;
+		if (ACLITitleMod.config.customSplashEnabled && splashes.length > 0) {
 			Random r = new Random();
 			r.setSeed(splash.length() + splash.codePointAt(0));
 			return splashes[r.nextInt(splashes.length)];
@@ -65,20 +65,20 @@ class TitleScreenMixin extends Screen {
 	@Inject(method="init()V", at=@At("HEAD"))
 	private void postInit(CallbackInfo ci) {
 		this.minecraft.options.realmsNotifications = false;
-		CustomTitleScreenMod.screenWidth = width;
-		CustomTitleScreenMod.screenHeight = height;
+		ACLITitleMod.screenWidth = width;
+		ACLITitleMod.screenHeight = height;
 	}
 
 	@Override
 	public void setSize(int a, int b) {
-		CustomTitleScreenMod.screenWidth = width;
-		CustomTitleScreenMod.screenHeight = height;
+		ACLITitleMod.screenWidth = width;
+		ACLITitleMod.screenHeight = height;
 		super.setSize(a, b);
 	}
 
 	@Inject(method="init()V", at=@At("RETURN"))
 	private void renderCustomButtons(CallbackInfo ci) {
-		CustomTitleScreenMod.buttonConfig.buttons.forEach((String key, SingleButtonConfig value) ->{
+		ACLITitleMod.buttonConfig.buttons.forEach((String key, SingleButtonConfig value) ->{
 			switch (value.type) {
 				case "modify": {
 					break;
@@ -103,23 +103,23 @@ class TitleScreenMixin extends Screen {
 						index += 1;
 					}
 					TexturedButtonWidget old = (TexturedButtonWidget) this.buttons.get(index);
-					LanguagesButton button = new LanguagesButton(old, CustomTitleScreenMod.screenWidth / 2 + value.x, value.y - (360 - CustomTitleScreenMod.screenHeight), value.width, value.height, value.text);
+					LanguagesButton button = new LanguagesButton(old, ACLITitleMod.screenWidth / 2 + value.x, value.y - (360 - ACLITitleMod.screenHeight), value.width, value.height, value.text);
 					this.buttons.remove(index);
 					this.children.remove(index);
 					this.addButton(button);
-					CustomTitleScreenMod.buttonCache.put(button, key);
+					ACLITitleMod.buttonCache.put(button, key);
 					break;
 				}
 				case "url": {
-					UrlButton button = new UrlButton(CustomTitleScreenMod.screenWidth / 2 + value.x, value.y - (360 - CustomTitleScreenMod.screenHeight), value.width, value.height, value.text, value.parameter);
+					UrlButton button = new UrlButton(ACLITitleMod.screenWidth / 2 + value.x, value.y - (360 - ACLITitleMod.screenHeight), value.width, value.height, value.text, value.parameter);
 					this.addButton(button);
-					CustomTitleScreenMod.buttonCache.put(button, key);
+					ACLITitleMod.buttonCache.put(button, key);
 					break;
 				}
 				case "refresh": {
-					RefreshButton button = new RefreshButton(CustomTitleScreenMod.screenWidth / 2 + value.x, value.y - (360 - CustomTitleScreenMod.screenHeight), value.width, value.height, value.text);
+					RefreshButton button = new RefreshButton(ACLITitleMod.screenWidth / 2 + value.x, value.y - (360 - ACLITitleMod.screenHeight), value.width, value.height, value.text);
 					this.addButton(button);
-					CustomTitleScreenMod.buttonCache.put(button, key);
+					ACLITitleMod.buttonCache.put(button, key);
 					break;
 				}
 				default: {
@@ -162,7 +162,7 @@ class TitleScreenMixin extends Screen {
 			),
 			index=0)
 	private Identifier modifyTitle(Identifier id) {
-		if (CustomTitleScreenMod.config.removeMinecraftLogo) {
+		if (ACLITitleMod.config.removeMinecraftLogo) {
 			return new Identifier("customtitlescreen:textures/blank.png");
 		} else {
 			return id;
@@ -178,7 +178,7 @@ class TitleScreenMixin extends Screen {
 			),
 			index=0)
 	private Identifier modifySubtitle(Identifier id) {
-		if (CustomTitleScreenMod.config.removeMinecraftLogo) {
+		if (ACLITitleMod.config.removeMinecraftLogo) {
 			return new Identifier("customtitlescreen:textures/blank.png");
 		} else {
 			return id;
