@@ -1,6 +1,6 @@
-# ACLI Title Screen
+# Modpack Menu
 
-An open-source fork of https://dilaton.martmists.com/Martmists/modpackmenu
+An open-source fork of https://dilaton.martmists.com/Martmists/CustomTitleScreen
 
 ## Why a Fork?
 
