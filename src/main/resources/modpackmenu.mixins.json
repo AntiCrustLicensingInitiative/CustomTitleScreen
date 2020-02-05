@@ -1,6 +1,6 @@
 {
   "required": true,
-  "package": "org.anticrustlicensinginitiative.aclititlescreen.mixin",
+  "package": "org.acli.modpackmenu.mixin",
   "compatibilityLevel": "JAVA_8",
   "client": [
     "TitleScreenMixin",

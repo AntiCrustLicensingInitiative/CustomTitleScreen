@@ -1,4 +1,4 @@
-package org.anticrustlicensinginitiative.aclititlescreen.config;
+package org.acli.modpackmenu.config;
 
 import blue.endless.jankson.Comment;
 

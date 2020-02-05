@@ -1,10 +1,10 @@
-package org.anticrustlicensinginitiative.aclititlescreen.mixin;
+package org.acli.modpackmenu.mixin;
 
-import org.anticrustlicensinginitiative.aclititlescreen.ACLITitleMod;
-import org.anticrustlicensinginitiative.aclititlescreen.buttons.LanguagesButton;
-import org.anticrustlicensinginitiative.aclititlescreen.buttons.RefreshButton;
-import org.anticrustlicensinginitiative.aclititlescreen.config.SingleButtonConfig;
-import org.anticrustlicensinginitiative.aclititlescreen.buttons.UrlButton;
+import org.acli.modpackmenu.ACLITitleMod;
+import org.acli.modpackmenu.buttons.LanguagesButton;
+import org.acli.modpackmenu.buttons.RefreshButton;
+import org.acli.modpackmenu.config.SingleButtonConfig;
+import org.acli.modpackmenu.buttons.UrlButton;
 import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.client.font.TextRenderer;
 import net.minecraft.client.gui.screen.Screen;
@@ -141,7 +141,7 @@ class TitleScreenMixin extends Screen {
 		// We use ModifyArg since I couldn't find a different way to inject at this method call
 		// while having access to the Identifier to register a custom texture.
 
-		File f = FabricLoader.getInstance().getConfigDirectory().toPath().resolve("cts/background.png").toFile();
+		File f = FabricLoader.getInstance().getConfigDirectory().toPath().resolve("modpackmenu/background.png").toFile();
 		if (f.exists()) {
 			TextureManager t = this.minecraft.getTextureManager();
 			if (!(t.getTexture(id) instanceof NativeImageBackedTexture)) {
@@ -163,7 +163,7 @@ class TitleScreenMixin extends Screen {
 			index=0)
 	private Identifier modifyTitle(Identifier id) {
 		if (ACLITitleMod.config.removeMinecraftLogo) {
-			return new Identifier("customtitlescreen:textures/blank.png");
+			return new Identifier("modpackmenu:textures/blank.png");
 		} else {
 			return id;
 		}
@@ -179,7 +179,7 @@ class TitleScreenMixin extends Screen {
 			index=0)
 	private Identifier modifySubtitle(Identifier id) {
 		if (ACLITitleMod.config.removeMinecraftLogo) {
-			return new Identifier("customtitlescreen:textures/blank.png");
+			return new Identifier("modpackmenu:textures/blank.png");
 		} else {
 			return id;
 		}

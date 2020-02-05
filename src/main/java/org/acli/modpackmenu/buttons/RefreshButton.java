@@ -1,6 +1,6 @@
-package org.anticrustlicensinginitiative.aclititlescreen.buttons;
+package org.acli.modpackmenu.buttons;
 
-import org.anticrustlicensinginitiative.aclititlescreen.ACLITitleMod;
+import org.acli.modpackmenu.ACLITitleMod;
 import net.minecraft.client.gui.widget.ButtonWidget;
 
 public class RefreshButton extends ButtonWidget {

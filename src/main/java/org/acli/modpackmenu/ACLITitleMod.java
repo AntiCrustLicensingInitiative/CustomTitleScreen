@@ -1,7 +1,7 @@
-package org.anticrustlicensinginitiative.aclititlescreen;
+package org.acli.modpackmenu;
 
-import org.anticrustlicensinginitiative.aclititlescreen.config.ButtonConfig;
-import org.anticrustlicensinginitiative.aclititlescreen.config.CTSConfig;
+import org.acli.modpackmenu.config.ButtonConfig;
+import org.acli.modpackmenu.config.CTSConfig;
 import io.github.cottonmc.cotton.config.ConfigManager;
 import net.fabricmc.api.ClientModInitializer;
 import net.minecraft.client.gui.DrawableHelper;

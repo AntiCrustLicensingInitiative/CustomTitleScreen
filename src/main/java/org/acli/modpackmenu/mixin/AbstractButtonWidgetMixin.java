@@ -1,8 +1,8 @@
-package org.anticrustlicensinginitiative.aclititlescreen.mixin;
+package org.acli.modpackmenu.mixin;
 
 import com.google.common.collect.Lists;
-import org.anticrustlicensinginitiative.aclititlescreen.ACLITitleMod;
-import org.anticrustlicensinginitiative.aclititlescreen.config.SingleButtonConfig;
+import org.acli.modpackmenu.ACLITitleMod;
+import org.acli.modpackmenu.config.SingleButtonConfig;
 import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.font.*;
@@ -47,7 +47,7 @@ public class AbstractButtonWidgetMixin extends DrawableHelper {
 			return renderer;
 		if (!ACLITitleMod.allButtons.contains(this))
 			return renderer;
-		File f = new File(FabricLoader.getInstance().getConfigDirectory().toString() + "/cts/custom_font.ttf");
+		File f = new File(FabricLoader.getInstance().getConfigDirectory().toString() + "/modpackmenu/custom_font.ttf");
 		if (!f.exists())
 			return renderer;
 		Identifier id = new Identifier("cts:font");
@@ -74,7 +74,7 @@ public class AbstractButtonWidgetMixin extends DrawableHelper {
 			),
 			index = 0)
 	private Identifier modifyButtonImages(Identifier id) throws IOException {
-		File f = FabricLoader.getInstance().getConfigDirectory().toPath().resolve("cts/buttons.png").toFile();
+		File f = FabricLoader.getInstance().getConfigDirectory().toPath().resolve("modpackmenu/buttons.png").toFile();
 		if (f.exists()) {
 			TextureManager t = MinecraftClient.getInstance().getTextureManager();
 			if (!(t.getTexture(id) instanceof NativeImageBackedTexture)) {
