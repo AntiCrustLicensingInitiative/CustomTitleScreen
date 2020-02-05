@@ -1,4 +1,4 @@
-# CustomTitleScreen
+# Modpack Menu
 
 An open-source fork of https://dilaton.martmists.com/Martmists/CustomTitleScreen
 
@@ -17,8 +17,8 @@ Martmists changed all of the licenses of his mods from MIT to a very restrictive
 
 ## Configuration
 
-For a custom wallpaper, simply put an image in config/cts/background.png
-For custom buttons, put an image in config/cts/buttons.png
+For a custom wallpaper, simply put an image in config/modpackmenu/background.png
+For custom buttons, put an image in config/modpackmenu/buttons.png
 > Note: The buttons.png needs to be based on widgets.png, which can be extracted from minecraft.
 
 Main config:

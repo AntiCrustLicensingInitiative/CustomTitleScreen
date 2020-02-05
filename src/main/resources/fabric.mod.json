@@ -1,27 +1,28 @@
 {
   "schemaVersion": 1,
-  "id": "customtitlescreen",
+  "id": "modpackmenu",
   "version": "${version}",
-  "name": "Custom Title Screen",
+  "name": "Modpack Menu",
   "description": "Allows you to customize the title screen",
   "authors": [
-    "Martmists"
+    "Martmists",
+    ""
   ],
   "contact": {
     "sources": "https://github.com/AntiCrustLicensingInitiative/CustomTitleScreen"
   },
   "license": "LGPL-3.0-or-later",
-  "icon": "assets/cts/icon.png",
+  "icon": "assets/modpackmenu/icon.png",
   "environment": "client",
   "entrypoints": {
     "client": [
       {
-        "value": "com.martmists.customtitlescreen.CustomTitleScreenMod"
+        "value": "org.acli.modpackmenu.ACLITitleMod"
       }
     ]
   },
   "mixins": [
-    "customtitlescreen.mixins.json"
+    "modpackmenu.mixins.json"
   ],
   "depends": {
     "fabricloader": ">=0.4.0",

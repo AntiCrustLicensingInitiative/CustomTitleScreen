@@ -1,8 +1,8 @@
-package com.martmists.customtitlescreen.config;
+package org.acli.modpackmenu.config;
 
 import io.github.cottonmc.cotton.config.annotations.ConfigFile;
 
-@ConfigFile(name = "cts/config")
+@ConfigFile(name = "modpackmenu/config")
 public class CTSConfig {
 	public boolean customEditionEnabled = false;
 	public String customEdition = "";

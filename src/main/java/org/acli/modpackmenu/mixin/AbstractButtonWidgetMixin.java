@@ -1,8 +1,8 @@
-package com.martmists.customtitlescreen.mixin;
+package org.acli.modpackmenu.mixin;
 
 import com.google.common.collect.Lists;
-import com.martmists.customtitlescreen.CustomTitleScreenMod;
-import com.martmists.customtitlescreen.config.SingleButtonConfig;
+import org.acli.modpackmenu.ACLITitleMod;
+import org.acli.modpackmenu.config.SingleButtonConfig;
 import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.font.*;
@@ -45,9 +45,9 @@ public class AbstractButtonWidgetMixin extends DrawableHelper {
 	private TextRenderer modifyTextRenderer(TextRenderer renderer) {
 		if (!(MinecraftClient.getInstance().currentScreen instanceof TitleScreen))
 			return renderer;
-		if (!CustomTitleScreenMod.allButtons.contains(this))
+		if (!ACLITitleMod.allButtons.contains(this))
 			return renderer;
-		File f = new File(FabricLoader.getInstance().getConfigDirectory().toString() + "/cts/custom_font.ttf");
+		File f = new File(FabricLoader.getInstance().getConfigDirectory().toString() + "/modpackmenu/custom_font.ttf");
 		if (!f.exists())
 			return renderer;
 		Identifier id = new Identifier("cts:font");
@@ -74,7 +74,7 @@ public class AbstractButtonWidgetMixin extends DrawableHelper {
 			),
 			index = 0)
 	private Identifier modifyButtonImages(Identifier id) throws IOException {
-		File f = FabricLoader.getInstance().getConfigDirectory().toPath().resolve("cts/buttons.png").toFile();
+		File f = FabricLoader.getInstance().getConfigDirectory().toPath().resolve("modpackmenu/buttons.png").toFile();
 		if (f.exists()) {
 			TextureManager t = MinecraftClient.getInstance().getTextureManager();
 			if (!(t.getTexture(id) instanceof NativeImageBackedTexture)) {
@@ -90,67 +90,67 @@ public class AbstractButtonWidgetMixin extends DrawableHelper {
 	private void modifyButtonLocations(int x, int y, int width, int height, String message, CallbackInfo ci) {
 		if (!(MinecraftClient.getInstance().currentScreen instanceof TitleScreen))
 			return;
-		if (!CustomTitleScreenMod.allButtons.contains(this)) {
-			CustomTitleScreenMod.allButtons.add(this);
+		if (!ACLITitleMod.allButtons.contains(this)) {
+			ACLITitleMod.allButtons.add(this);
 		}
-		int i = CustomTitleScreenMod.screenWidth / 2 - 100;
-		int j = CustomTitleScreenMod.screenHeight / 4 + 48;
+		int i = ACLITitleMod.screenWidth / 2 - 100;
+		int j = ACLITitleMod.screenHeight / 4 + 48;
 		int xScale = 12;
 		int yScale = 24;
 
-		if (CustomTitleScreenMod.buttonCache.containsKey(this)) {
-			this.x = CustomTitleScreenMod.screenWidth / 2 + this.x;
-			this.y = this.y - (360 - CustomTitleScreenMod.screenHeight);
-			SingleButtonConfig config = CustomTitleScreenMod.buttonConfig.buttons.get(CustomTitleScreenMod.buttonCache.get(this));
+		if (ACLITitleMod.buttonCache.containsKey(this)) {
+			this.x = ACLITitleMod.screenWidth / 2 + this.x;
+			this.y = this.y - (360 - ACLITitleMod.screenHeight);
+			SingleButtonConfig config = ACLITitleMod.buttonConfig.buttons.get(ACLITitleMod.buttonCache.get(this));
 			if (!config.text.equals("<default>"))
 				this.message = config.text;
 		} else if (x == i) {
 			if (y == j) {
 				// Singleplayer
-				SingleButtonConfig config = CustomTitleScreenMod.buttonConfig.buttons.get("minecraft.singleplayer");
+				SingleButtonConfig config = ACLITitleMod.buttonConfig.buttons.get("minecraft.singleplayer");
 				if (config == null) return;
-				this.x = CustomTitleScreenMod.screenWidth / 2 + config.x;
-				this.y = config.y - (360 - CustomTitleScreenMod.screenHeight);
+				this.x = ACLITitleMod.screenWidth / 2 + config.x;
+				this.y = config.y - (360 - ACLITitleMod.screenHeight);
 				this.width = config.width;
 				this.height = config.height;
 				if (!config.text.equals("<default>"))
 					this.message = config.text;
 			} else if (y == j+yScale) {
 				// Multiplayer
-				SingleButtonConfig config = CustomTitleScreenMod.buttonConfig.buttons.get("minecraft.multiplayer");
+				SingleButtonConfig config = ACLITitleMod.buttonConfig.buttons.get("minecraft.multiplayer");
 				if (config == null) return;
-				this.x = CustomTitleScreenMod.screenWidth / 2 + config.x;
-				this.y = config.y - (360 - CustomTitleScreenMod.screenHeight);
+				this.x = ACLITitleMod.screenWidth / 2 + config.x;
+				this.y = config.y - (360 - ACLITitleMod.screenHeight);
 				this.width = config.width;
 				this.height = config.height;
 				if (!config.text.equals("<default>"))
 					this.message = config.text;
 			} else if (y == j+yScale*2) {
 				// Realms
-				SingleButtonConfig config = CustomTitleScreenMod.buttonConfig.buttons.get("minecraft.realms");
+				SingleButtonConfig config = ACLITitleMod.buttonConfig.buttons.get("minecraft.realms");
 				if (config == null) return;
-				this.x = CustomTitleScreenMod.screenWidth / 2 + config.x;
-				this.y = config.y - (360 - CustomTitleScreenMod.screenHeight);
+				this.x = ACLITitleMod.screenWidth / 2 + config.x;
+				this.y = config.y - (360 - ACLITitleMod.screenHeight);
 				this.width = config.width;
 				this.height = config.height;
 				if (!config.text.equals("<default>"))
 					this.message = config.text;
 			} else if (y == j+yScale*3) {
 				// Mod menu
-				SingleButtonConfig config = CustomTitleScreenMod.buttonConfig.buttons.get("modmenu.modlist");
+				SingleButtonConfig config = ACLITitleMod.buttonConfig.buttons.get("modmenu.modlist");
 				if (config == null) return;
-				this.x = CustomTitleScreenMod.screenWidth / 2 + config.x;
-				this.y = config.y - (360 - CustomTitleScreenMod.screenHeight);
+				this.x = ACLITitleMod.screenWidth / 2 + config.x;
+				this.y = config.y - (360 - ACLITitleMod.screenHeight);
 				this.width = config.width;
 				this.height = config.height;
 				if (!config.text.equals("<default>"))
 					this.message = config.text;
 			} else if (y == j+yScale*3.5) {
 				// Options
-				SingleButtonConfig config = CustomTitleScreenMod.buttonConfig.buttons.get("minecraft.options");
+				SingleButtonConfig config = ACLITitleMod.buttonConfig.buttons.get("minecraft.options");
 				if (config == null) return;
-				this.x = CustomTitleScreenMod.screenWidth / 2 + config.x;
-				this.y = config.y - (360 - CustomTitleScreenMod.screenHeight);
+				this.x = ACLITitleMod.screenWidth / 2 + config.x;
+				this.y = config.y - (360 - ACLITitleMod.screenHeight);
 				this.width = config.width;
 				this.height = config.height;
 				if (!config.text.equals("<default>"))
@@ -159,30 +159,30 @@ public class AbstractButtonWidgetMixin extends DrawableHelper {
 		} else if (y == j+yScale*3.5) {
 			if (x == i - 2*xScale) {
 				// Language
-				SingleButtonConfig config = CustomTitleScreenMod.buttonConfig.buttons.get("minecraft.language");
+				SingleButtonConfig config = ACLITitleMod.buttonConfig.buttons.get("minecraft.language");
 				if (config == null) return;
-				this.x = CustomTitleScreenMod.screenWidth / 2 + config.x;
-				this.y = config.y - (360 - CustomTitleScreenMod.screenHeight);
+				this.x = ACLITitleMod.screenWidth / 2 + config.x;
+				this.y = config.y - (360 - ACLITitleMod.screenHeight);
 				this.width = config.width;
 				this.height = config.height;
 				if (!config.text.equals("<default>"))
 					this.message = config.text;
 			} else if (x == i + xScale*8.5) {
 				// Quit
-				SingleButtonConfig config = CustomTitleScreenMod.buttonConfig.buttons.get("minecraft.quit");
+				SingleButtonConfig config = ACLITitleMod.buttonConfig.buttons.get("minecraft.quit");
 				if (config == null) return;
-				this.x = CustomTitleScreenMod.screenWidth / 2 + config.x;
-				this.y = config.y - (360 - CustomTitleScreenMod.screenHeight);
+				this.x = ACLITitleMod.screenWidth / 2 + config.x;
+				this.y = config.y - (360 - ACLITitleMod.screenHeight);
 				this.width = config.width;
 				this.height = config.height;
 				if (!config.text.equals("<default>"))
 					this.message = config.text;
 			} else if (x == i + xScale*17) {
 				// Accessibility
-				SingleButtonConfig config = CustomTitleScreenMod.buttonConfig.buttons.get("minecraft.accessibility");
+				SingleButtonConfig config = ACLITitleMod.buttonConfig.buttons.get("minecraft.accessibility");
 				if (config == null) return;
-				this.x = CustomTitleScreenMod.screenWidth / 2 + config.x;
-				this.y = config.y - (360 - CustomTitleScreenMod.screenHeight);
+				this.x = ACLITitleMod.screenWidth / 2 + config.x;
+				this.y = config.y - (360 - ACLITitleMod.screenHeight);
 				this.width = config.width;
 				this.height = config.height;
 				if (!config.text.equals("<default>"))

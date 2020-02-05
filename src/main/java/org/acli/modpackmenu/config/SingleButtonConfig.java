@@ -1,4 +1,4 @@
-package com.martmists.customtitlescreen.config;
+package org.acli.modpackmenu.config;
 
 import blue.endless.jankson.Comment;
 
