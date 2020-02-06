@@ -10,6 +10,7 @@ Martmists changed all of the licenses of his mods from MIT to a very restrictive
 ## Features
 
 * Custom background image
+* Replace the dirt background
 * Add custom button texture
 * Modify button locations
 * Add your own buttons that open URLs
@@ -44,7 +45,10 @@ Main config:
     ],
     
     // Remove the minecraft logo from the main menu
-    "removeMinecraftLogo": false
+    "removeMinecraftLogo": false,
+
+    // Replace the dirt background with an orange wool one.
+    "backgroundTextureIdentifier": "textures/block/orange_wool.png"
 }
 ```
 Custom buttons:
