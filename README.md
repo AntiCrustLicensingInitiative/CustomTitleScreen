@@ -17,8 +17,9 @@ Martmists changed all of the licenses of his mods from MIT to a very restrictive
 
 ## Configuration
 
-For a custom wallpaper, simply put an image in config/modpackmenu/background.png
-For custom buttons, put an image in config/modpackmenu/buttons.png
+For a custom wallpaper, simply put an image in config/modpackmenu/background.png<br>
+For a custom wallpaper for that extremely rare chance of Minceraft appearing, put an image in config/modpackmenu/backgorund.png<br>
+For custom buttons, put an image in config/modpackmenu/buttons.png<br>
 > Note: The buttons.png needs to be based on widgets.png, which can be extracted from minecraft.
 
 Main config:

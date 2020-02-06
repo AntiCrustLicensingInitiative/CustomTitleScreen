@@ -9,7 +9,6 @@ import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.client.font.TextRenderer;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.gui.screen.TitleScreen;
-import net.minecraft.client.gui.widget.AbstractButtonWidget;
 import net.minecraft.client.gui.widget.TexturedButtonWidget;
 import net.minecraft.client.texture.NativeImage;
 import net.minecraft.client.texture.NativeImageBackedTexture;
@@ -17,6 +16,7 @@ import net.minecraft.client.texture.TextureManager;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.ModifyArg;
@@ -27,8 +27,12 @@ import java.util.Random;
 
 @Mixin(value = TitleScreen.class, priority = 1001)
 class TitleScreenMixin extends Screen {
+	@Shadow
+	private final boolean isMinceraft;
+
 	protected TitleScreenMixin(Text text) {
 		super(text);
+		this.isMinceraft = (double)(new Random()).nextFloat() < 1.0E-4D;
 	}
 
 	@ModifyArg(method="render(IIF)V",
@@ -145,9 +149,17 @@ class TitleScreenMixin extends Screen {
 		if (f.exists()) {
 			TextureManager t = this.minecraft.getTextureManager();
 			if (!(t.getTexture(id) instanceof NativeImageBackedTexture)) {
-				t.registerTexture(id,
-						new NativeImageBackedTexture(NativeImage.read(new FileInputStream(f)))
-				);
+				if (this.isMinceraft) {
+					File minceF = FabricLoader.getInstance().getConfigDirectory().toPath().resolve("modpackmenu/backgorund.png").toFile();
+					if (minceF.exists()) {
+						NativeImageBackedTexture backgorundT = new NativeImageBackedTexture(NativeImage.read(new FileInputStream(minceF)));
+						t.registerTexture(id, backgorundT);
+						return id;
+					}
+				}
+				
+				NativeImageBackedTexture backgroundT = new NativeImageBackedTexture(NativeImage.read(new FileInputStream(f)));
+				t.registerTexture(id, backgroundT);
 			}
 		}
 		return id;
