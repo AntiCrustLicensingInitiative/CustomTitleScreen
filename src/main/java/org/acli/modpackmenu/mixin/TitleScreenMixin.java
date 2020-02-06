@@ -1,6 +1,6 @@
 package org.acli.modpackmenu.mixin;
 
-import org.acli.modpackmenu.ACLITitleMod;
+import org.acli.modpackmenu.ModpackMenuMod;
 import org.acli.modpackmenu.buttons.LanguagesButton;
 import org.acli.modpackmenu.buttons.RefreshButton;
 import org.acli.modpackmenu.config.SingleButtonConfig;
@@ -41,8 +41,8 @@ class TitleScreenMixin extends Screen {
 					  ordinal = 0),
 			   index=1)
 	private String modifyEdition(TextRenderer textRenderer, String version, int x, int y, int color) {
-		if (ACLITitleMod.config.customEditionEnabled) {
-			this.drawString(textRenderer, ACLITitleMod.config.customEdition, x, y-10, color);
+		if (ModpackMenuMod.config.customEditionEnabled) {
+			this.drawString(textRenderer, ModpackMenuMod.config.customEdition, x, y-10, color);
 		}
 		return version;
 	}
@@ -54,10 +54,10 @@ class TitleScreenMixin extends Screen {
 			   ),
 			   index=1)
 	private String modifySplash(String splash) {
-		if (ACLITitleMod.config.removeSplash)
+		if (ModpackMenuMod.config.removeSplash)
 			return "";
-		String[] splashes = ACLITitleMod.config.customSplash;
-		if (ACLITitleMod.config.customSplashEnabled && splashes.length > 0) {
+		String[] splashes = ModpackMenuMod.config.customSplash;
+		if (ModpackMenuMod.config.customSplashEnabled && splashes.length > 0) {
 			Random r = new Random();
 			r.setSeed(splash.length() + splash.codePointAt(0));
 			return splashes[r.nextInt(splashes.length)];
@@ -69,20 +69,20 @@ class TitleScreenMixin extends Screen {
 	@Inject(method="init()V", at=@At("HEAD"))
 	private void postInit(CallbackInfo ci) {
 		this.minecraft.options.realmsNotifications = false;
-		ACLITitleMod.screenWidth = width;
-		ACLITitleMod.screenHeight = height;
+		ModpackMenuMod.screenWidth = width;
+		ModpackMenuMod.screenHeight = height;
 	}
 
 	@Override
 	public void setSize(int a, int b) {
-		ACLITitleMod.screenWidth = width;
-		ACLITitleMod.screenHeight = height;
+		ModpackMenuMod.screenWidth = width;
+		ModpackMenuMod.screenHeight = height;
 		super.setSize(a, b);
 	}
 
 	@Inject(method="init()V", at=@At("RETURN"))
 	private void renderCustomButtons(CallbackInfo ci) {
-		ACLITitleMod.buttonConfig.buttons.forEach((String key, SingleButtonConfig value) ->{
+		ModpackMenuMod.buttonConfig.buttons.forEach((String key, SingleButtonConfig value) ->{
 			switch (value.type) {
 				case "modify": {
 					break;
@@ -107,23 +107,23 @@ class TitleScreenMixin extends Screen {
 						index += 1;
 					}
 					TexturedButtonWidget old = (TexturedButtonWidget) this.buttons.get(index);
-					LanguagesButton button = new LanguagesButton(old, ACLITitleMod.screenWidth / 2 + value.x, value.y - (360 - ACLITitleMod.screenHeight), value.width, value.height, value.text);
+					LanguagesButton button = new LanguagesButton(old, ModpackMenuMod.screenWidth / 2 + value.x, value.y - (360 - ModpackMenuMod.screenHeight), value.width, value.height, value.text);
 					this.buttons.remove(index);
 					this.children.remove(index);
 					this.addButton(button);
-					ACLITitleMod.buttonCache.put(button, key);
+					ModpackMenuMod.buttonCache.put(button, key);
 					break;
 				}
 				case "url": {
-					UrlButton button = new UrlButton(ACLITitleMod.screenWidth / 2 + value.x, value.y - (360 - ACLITitleMod.screenHeight), value.width, value.height, value.text, value.parameter);
+					UrlButton button = new UrlButton(ModpackMenuMod.screenWidth / 2 + value.x, value.y - (360 - ModpackMenuMod.screenHeight), value.width, value.height, value.text, value.parameter);
 					this.addButton(button);
-					ACLITitleMod.buttonCache.put(button, key);
+					ModpackMenuMod.buttonCache.put(button, key);
 					break;
 				}
 				case "refresh": {
-					RefreshButton button = new RefreshButton(ACLITitleMod.screenWidth / 2 + value.x, value.y - (360 - ACLITitleMod.screenHeight), value.width, value.height, value.text);
+					RefreshButton button = new RefreshButton(ModpackMenuMod.screenWidth / 2 + value.x, value.y - (360 - ModpackMenuMod.screenHeight), value.width, value.height, value.text);
 					this.addButton(button);
-					ACLITitleMod.buttonCache.put(button, key);
+					ModpackMenuMod.buttonCache.put(button, key);
 					break;
 				}
 				default: {
@@ -174,7 +174,7 @@ class TitleScreenMixin extends Screen {
 			),
 			index=0)
 	private Identifier modifyTitle(Identifier id) {
-		if (ACLITitleMod.config.removeMinecraftLogo) {
+		if (ModpackMenuMod.config.removeMinecraftLogo) {
 			return new Identifier("modpackmenu:textures/blank.png");
 		} else {
 			return id;
@@ -190,7 +190,7 @@ class TitleScreenMixin extends Screen {
 			),
 			index=0)
 	private Identifier modifySubtitle(Identifier id) {
-		if (ACLITitleMod.config.removeMinecraftLogo) {
+		if (ModpackMenuMod.config.removeMinecraftLogo) {
 			return new Identifier("modpackmenu:textures/blank.png");
 		} else {
 			return id;
