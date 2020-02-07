@@ -10,10 +10,10 @@ Martmists changed all of the licenses of his mods from MIT to a very restrictive
 ## Features
 
 * Custom background image
-* Replace the dirt background
 * Add custom button texture
 * Modify button locations
 * Add your own buttons that open URLs
+* Replace the dirt background with another texture
 
 
 ## Configuration
