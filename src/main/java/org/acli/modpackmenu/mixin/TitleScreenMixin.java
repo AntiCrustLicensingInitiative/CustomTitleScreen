@@ -127,7 +127,7 @@ class TitleScreenMixin extends Screen {
 					break;
 				}
 				default: {
-					System.out.println("[CMM] Error: Unknown button type: " + value.type);
+					System.out.println("[MM] Error: Unknown button type: " + value.type);
 				}
 			}
 		});
