@@ -10,7 +10,7 @@ import net.minecraft.client.gui.widget.AbstractButtonWidget;
 import java.util.ArrayList;
 import java.util.IdentityHashMap;
 
-public class ACLITitleMod implements ClientModInitializer {
+public class ModpackMenuMod implements ClientModInitializer {
 	public static CTSConfig config;
 	public static ButtonConfig buttonConfig;
 	public static int screenWidth;
@@ -24,9 +24,9 @@ public class ACLITitleMod implements ClientModInitializer {
 	}
 
 	public static void loadConfig() {
-		ACLITitleMod.allButtons = new ArrayList<>();
-		ACLITitleMod.buttonCache = new IdentityHashMap<>();
-		ACLITitleMod.config = ConfigManager.loadConfig(CTSConfig.class);
-		ACLITitleMod.buttonConfig = ConfigManager.loadConfig(ButtonConfig.class);
+		ModpackMenuMod.allButtons = new ArrayList<>();
+		ModpackMenuMod.buttonCache = new IdentityHashMap<>();
+		ModpackMenuMod.config = ConfigManager.loadConfig(CTSConfig.class);
+		ModpackMenuMod.buttonConfig = ConfigManager.loadConfig(ButtonConfig.class);
 	}
 }

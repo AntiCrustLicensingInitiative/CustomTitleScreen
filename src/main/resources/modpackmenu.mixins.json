@@ -3,8 +3,11 @@
   "package": "org.acli.modpackmenu.mixin",
   "compatibilityLevel": "JAVA_8",
   "client": [
-    "TitleScreenMixin",
-    "AbstractButtonWidgetMixin"
+    "AbstractButtonWidgetMixin",
+    "EntryListWidgetMixin",
+    "ListWidgetMixin",
+    "ScreenMixin",
+    "TitleScreenMixin"
   ],
   "injectors": {
     "defaultRequire": 1

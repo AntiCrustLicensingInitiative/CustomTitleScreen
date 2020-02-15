@@ -10,4 +10,5 @@ public class CTSConfig {
 	public boolean removeSplash = false;
 	public String[] customSplash = new String[0];
 	public boolean removeMinecraftLogo = false;
+	public String backgroundTextureIdentifier = "textures/gui/options_background.png";
 }

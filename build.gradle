@@ -11,13 +11,6 @@ archivesBaseName = project.archives_base_name
 version = project.mod_version
 group = project.maven_group
 
-configurations {
-	compileAndInclude {
-		extendsFrom compile
-		extendsFrom include
-	}
-}
-
 dependencies {
 	// Base dependencies
 	minecraft "com.mojang:minecraft:${project.minecraft_version}"
@@ -27,6 +20,8 @@ dependencies {
 	modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
 	// Used for configs
 	modImplementation "io.github.cottonmc.cotton:cotton-config:1.0.0-rc.7"
+	// Used for Mod Menu mixin
+	modImplementation "io.github.prospector:modmenu:${modmenu_version}"
 }
 
 processResources {
